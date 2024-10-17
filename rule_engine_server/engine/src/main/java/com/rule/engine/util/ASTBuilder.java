@@ -12,7 +12,7 @@ public class ASTBuilder {
         RuleNodeModel root = null;
 
         for (String expression : expressions) {
-            RuleNodeModel currentAST = parseSingleExpression(expression);
+            RuleNodeModel currentAST = parseSingleExpression(expression.trim());
             if (root == null) {
                 root = currentAST;
             } else {

@@ -1,6 +1,7 @@
 package com.rule.engine.util;
 
 import com.rule.engine.DTO.RuleEvaluateRequestDTO;
+import com.rule.engine.model.MetaDataModel;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -13,9 +14,15 @@ public class RuleEngineUtil {
     private static final String VALID_PARENS = "\\(|\\)";
     private static final String VALID_TOKEN = VALID_ATTRIBUTES + "|" + VALID_OPERATORS + "|" + VALID_PARENS;
 
+    public static boolean validateMetaData(MetaDataModel metaDataModel) {
+        return !Objects.isNull(metaDataModel) && !Objects.isNull(metaDataModel.getUploadedBy()) && !metaDataModel.getUploadedBy().trim().isEmpty();
+    }
+
     public static boolean validateRules(List<String> rules) {
+        if(Objects.isNull(rules) || rules.isEmpty()) return false;
+
         for (String rule : rules) {
-            if (!isValidRule(rule)) return false;
+            if(Objects.isNull(rule) || rule.trim().isEmpty() || !isValidRule(rule.trim())) return false;
         }
         return true;
     }
@@ -92,7 +99,7 @@ public class RuleEngineUtil {
         requestMap.put("age",request.getAge());
         requestMap.put("salary",request.getSalary());
         requestMap.put("experience",request.getExperience());
-        requestMap.put("department",request.getDepartment());
+        requestMap.put("department",request.getDepartment().trim());
 
         return requestMap;
     }
@@ -100,6 +107,14 @@ public class RuleEngineUtil {
     private static void validateRequest(RuleEvaluateRequestDTO request) {
         if(request.getAge() == null || request.getSalary() == null || request.getExperience() == null || request.getDepartment() == null) {
             throw new IllegalArgumentException("missing required parameter");
+        }
+
+        if(request.getAge() < 0 || request.getSalary() < 0 || request.getExperience() < 0) {
+            throw new IllegalArgumentException("invalid parameter values must me more than 0 for age, salary and experience");
+        }
+
+        if(request.getDepartment().trim().isEmpty()) {
+            throw new IllegalArgumentException("department cannot be empty");
         }
     }
 

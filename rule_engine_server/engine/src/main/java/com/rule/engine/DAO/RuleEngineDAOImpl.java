@@ -28,10 +28,16 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
     @Override
     public RuleModel createRule(RuleCreateRequestDTO request) throws Exception {
         try{
-            log.info("request made by user : {} to save rule : {}",request.getMetaData().getUploadedBy(),request.getRuleExpression());
-
             RuleModel ruleModel = new RuleModel();
             ASTBuilder astBuilder = new ASTBuilder();
+
+            boolean isValidMetaData = RuleEngineUtil.validateMetaData(request.getMetaData());
+            if(!isValidMetaData) {
+                log.error("invalid metadata : {}",request.getMetaData().toString());
+                throw new IllegalArgumentException("invalid metadata");
+            }
+
+            log.info("request made by user : {} to save rule : {}",request.getMetaData().getUploadedBy().trim(),request.getRuleExpression());
 
             boolean isValidExpression = RuleEngineUtil.validateRules(List.of(request.getRuleExpression()));
 
@@ -40,11 +46,12 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
                 throw new IllegalArgumentException("invalid expression");
             }
 
-            MetaDataModel metaData = new MetaDataModel(request.getMetaData());
+            MetaDataModel metaData = new MetaDataModel();
+            metaData.setCreatedAt(new Date());
+            metaData.setUploadedBy(request.getMetaData().getUploadedBy().trim());
 
             RuleNodeModel ruleNode = astBuilder.parse(List.of(request.getRuleExpression()));
 
-            metaData.setCreatedAt(new Date());
             ruleModel.setRuleExpression(request.getRuleExpression());
             ruleModel.setRuleAST(ruleNode);
             ruleModel.setMetaData(metaData);
@@ -80,12 +87,12 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
             ASTEvaluator evaluator = new ASTEvaluator();
             List<RuleModel> rules = ruleEngineRepository.findAll();
 
+            Map<String,Object> requestMap = RuleEngineUtil.convertRequestToAttributeMap(request);
+
             if(rules.isEmpty()) {
                 log.error("no rules found to evaluate data : {}",request.toString());
                 return false;
             }
-
-            Map<String,Object> requestMap = RuleEngineUtil.convertRequestToAttributeMap(request);
 
             for(RuleModel rule : rules) {
                 RuleNodeModel ruleAST = rule.getRuleAST();
@@ -106,7 +113,12 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
     @Override
     public RuleModel combineRule(RuleCombineRequestDTO request) throws Exception {
         try{
-            log.info("request made by user : {} to combine rule : {}",request.getMetaData().getUploadedBy(),request.toString());
+            boolean isValidMetaData = RuleEngineUtil.validateMetaData(request.getMetaData());
+            if(!isValidMetaData) {
+                throw new IllegalArgumentException("invalid metadata");
+            }
+
+            log.info("request made by user : {} to combine rule : {}",request.getMetaData().getUploadedBy().toString(),request.toString());
 
             boolean validatedExpression = RuleEngineUtil.validateRules(request.getRuleExpression());
             if(!validatedExpression) {
@@ -119,8 +131,9 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
             RuleNodeModel combineRules = astBuilder.parse(request.getRuleExpression());
             log.info("combined rule : {}",combineRules);
 
-            MetaDataModel metaData = new MetaDataModel(request.getMetaData());
+            MetaDataModel metaData = new MetaDataModel();
             metaData.setCreatedAt(new Date());
+            metaData.setUploadedBy(request.getMetaData().getUploadedBy().trim());
 
             ruleModel.setRuleAST(combineRules);
             ruleModel.setMetaData(metaData);

@@ -15,14 +15,5 @@ import java.util.Date;
 @AllArgsConstructor
 public class MetaDataModel {
     String uploadedBy;
-    String updatedBy;
     Date createdAt;
-    Date updatedAt;
-
-    public MetaDataModel(MetaDataModel metaDataModel){
-        this.uploadedBy = metaDataModel.getUploadedBy();
-        this.updatedBy = metaDataModel.getUpdatedBy();
-        this.createdAt = metaDataModel.getCreatedAt();
-        this.updatedAt = metaDataModel.getUpdatedAt();
-    }
 }
