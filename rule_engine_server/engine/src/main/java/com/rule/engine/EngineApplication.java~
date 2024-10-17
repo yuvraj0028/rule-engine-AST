@@ -1,0 +1,17 @@
+package com.rule.engine;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * This is a Rule Engine Application
+ * for creating and evaluating rules
+ *
+ * @author  Yuvraj Singh
+ * @version 1.0
+ * @since   OCT 2024
+ */
+@SpringBootApplication
+public class EngineApplication {
+	public static void main(String[] args) {SpringApplication.run(EngineApplication.class, args);}
+}
