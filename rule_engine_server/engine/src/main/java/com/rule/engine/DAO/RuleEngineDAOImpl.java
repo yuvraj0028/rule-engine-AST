@@ -40,7 +40,6 @@ public class RuleEngineDAOImpl implements RuleEngineDAO {
             log.info("request made by user : {} to save rule : {}",request.getMetaData().getUploadedBy().trim(),request.getRuleExpression());
 
             boolean isValidExpression = RuleEngineUtil.validateRules(List.of(request.getRuleExpression()));
-
             if(!isValidExpression) {
                 log.error("invalid expression : {}",request.getRuleExpression());
                 throw new IllegalArgumentException("invalid expression");
