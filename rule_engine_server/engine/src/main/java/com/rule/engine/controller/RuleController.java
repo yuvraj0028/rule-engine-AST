@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(
+    origins = {
+            "http://localhost:4200",
+    },
+    methods = {
+            RequestMethod.GET,
+            RequestMethod.POST,
+    }
+)
 @RestController
 @RequestMapping("/api/rule")
 public class RuleController {
@@ -27,7 +36,7 @@ public class RuleController {
         return ruleService.getAllRules();
     }
 
-    @GetMapping(value="/evaluate_rule",produces = "application/json", consumes = "application/json",name = "evaluateRule")
+    @PostMapping(value="/evaluate_rule",produces = "application/json", consumes = "application/json",name = "evaluateRule")
     public ResponseEntity<RuleEvaluateRequestDTO> evaluateRule(@RequestBody RuleEvaluateRequestDTO request) {
         return ruleService.evaluateRule(request);
     }
