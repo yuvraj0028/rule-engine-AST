@@ -1,0 +1,30 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+</ngx-spinner>
+
+
+<div class="container">
+  <div class="input-group flex-nowrap exp-inp">
+    <input type="number" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="addon-wrapping"
+      [(ngModel)]="age">
+  </div>
+  <div class="input-group flex-nowrap exp-inp">
+    <input type="text" class="form-control" placeholder="Department" aria-label="Department"
+      aria-describedby="addon-wrapping" [(ngModel)]="department">
+  </div>
+  <div class="input-group flex-nowrap exp-inp">
+    <input type="number" class="form-control" placeholder="Salary" aria-label="Salary" aria-describedby="addon-wrapping"
+      [(ngModel)]="salary">
+  </div>
+  <div class="input-group flex-nowrap exp-inp">
+    <input type="number" class="form-control" placeholder="Experience" aria-label="Experience"
+      aria-describedby="addon-wrapping" [(ngModel)]="experience">
+  </div>
+
+  <div class="d-flex justify-content-center w-100 gap-4">
+    <button type="button" class="btn btn-white-outlined rounded-pill my-2 equal-width-button btn-clear"
+      (click)="clearForm()">Clear</button>
+    <button type="button" class="btn btn-reddish-orange rounded-pill my-2 equal-width-button btn-evaluate"
+      (click)="evaluate()">Evaluate</button>
+  </div>
+
+</div>

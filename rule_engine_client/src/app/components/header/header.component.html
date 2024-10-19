@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/tree.png" alt="Logo" width="26" height="26" class="d-inline-block align-text-top me-2">
+      Rule Engine
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="d-flex justify-content-center flex-lg-row flex-column w-100 gap-lg-4">
+
+        <button
+          [class]="currBtn === 0 ? 'btn btn-reddish-orange rounded-pill my-2 equal-width-button' : 'btn btn-white-outlined rounded-pill my-2 equal-width-button'"
+          type="button" (click)="createClick()">Create</button>
+        <button
+          [class]="currBtn === 1 ? 'btn btn-reddish-orange rounded-pill my-2 equal-width-button' : 'btn btn-white-outlined rounded-pill my-2 equal-width-button'"
+          type="button" (click)="evaluateClick()">Evaluate</button>
+      </div>
+      <div class="ms-auto">
+        <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank"
+          class="btn btn-primary rounded-pill my-2 equal-width-button">AST</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <app-create-rule class="flex-item" *ngIf="currBtn === 0"></app-create-rule>
+  <app-evaluate-rule class="flex-item" *ngIf="currBtn === 1"></app-evaluate-rule>
+  <app-info class="flex-item"></app-info>
+</div>

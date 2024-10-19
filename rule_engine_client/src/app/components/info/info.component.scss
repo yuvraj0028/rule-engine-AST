@@ -1,0 +1,48 @@
+.about-container {
+  border: 1px solid white;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 10px;
+}
+
+.info {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.info:hover {
+  transform: translateY(-5px);
+}
+
+.info-link {
+  text-decoration: underline;
+  color: white;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+code {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #e6f0ff;
+  padding: 0.2em 0.4em;
+  border-radius: 5px;
+  font-family: "Courier New", Courier, monospace;
+  white-space: nowrap;
+}

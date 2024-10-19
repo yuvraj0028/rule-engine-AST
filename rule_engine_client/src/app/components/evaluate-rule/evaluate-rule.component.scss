@@ -1,0 +1,29 @@
+.container {
+  border: 1px solid white;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  width: 80%;
+}
+
+.exp-inp {
+  margin: 20px auto;
+}
+
+.btn-clear,
+.btn-evaluate {
+  width: 100%;
+  font-size: 20px;
+  margin: 10px 0;
+  color: white;
+}
+
+.btn-clear {
+  background-color: transparent;
+  border-color: white;
+}
+
+.btn-evaluate {
+  background-color: #ff4500;
+}

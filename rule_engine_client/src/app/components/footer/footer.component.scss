@@ -1,0 +1,67 @@
+/* app.component.css or styles.css */
+
+/* Footer styling */
+.footer {
+  background: linear-gradient(135deg, #3f3e3d, #302a2a);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col {
+  flex: 1;
+  padding: 10px;
+}
+
+.footer-col.about {
+  text-align: left; /* Align About Us section to the left */
+}
+
+.footer-col.follow {
+  text-align: right; /* Align Follow Us section to the right */
+}
+
+.footer-col h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.footer-col p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 24px;
+  color: white;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #f3ca20;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col.about,
+  .footer-col.follow {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
