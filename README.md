@@ -180,7 +180,7 @@ Here are the available APIs in the application, with details of required paramet
 #### Request Body
 
 ```json
-not required
+Not Required
 ```
 
 #### Response Body
@@ -229,7 +229,8 @@ Below are some test cases to ensure the proper functionality of the application:
 ### Test Case 1: Create Rule
 
 ```json
-// POST /application/api/rule/create_rule
+POST /application/api/rule/create_rule
+
 {
   "metaData": {
     "uploadedBy": "testUser"
@@ -243,7 +244,8 @@ Below are some test cases to ensure the proper functionality of the application:
 ### Test Case 2: Combine Rules
 
 ```json
-// POST /application/api/rule/combine_rule
+POST /application/api/rule/combine_rule
+
 {
   "metaData": {
     "uploadedBy": "testUser"
@@ -260,7 +262,8 @@ Below are some test cases to ensure the proper functionality of the application:
 ### Test Case 3: Evaluate Rule
 
 ```json
-// POST /application/api/rule/evaluate_rule
+POST /application/api/rule/evaluate_rule
+
 {
   "age": 35,
   "department": "Sales",
